@@ -128,7 +128,7 @@ class MainFragment : Fragment() {
         // If users choose to register with their email,
         // they will need to create a password as well
         val providers = arrayListOf(
-            AuthUI.IdpConfig.EmailBuilder().build()
+            AuthUI.IdpConfig.EmailBuilder().build(), AuthUI.IdpConfig.GoogleBuilder().build()
             //
         )
 
@@ -136,9 +136,11 @@ class MainFragment : Fragment() {
         // We listen to the response of this activity with the
         // SIGN_IN_RESULT_CODE code
         startActivityForResult(
-            AuthUI.getInstance().createSignInIntentBuilder().setAvailableProviders(
-                    providers
-                ).build(), MainFragment.SIGN_IN_RESULT_CODE
+            AuthUI.getInstance()
+                .createSignInIntentBuilder()
+                .setAvailableProviders(providers)
+                .build(),
+            MainFragment.SIGN_IN_RESULT_CODE
         )
     }
 }
